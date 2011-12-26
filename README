@@ -1,0 +1,18 @@
+Login in with Facebook
+========================
+
+Two models have been created
+	- User
+	- Authentication
+	
+The User Model holds info like Name, Email, Password, etc...
+The Authentication Model holds the UserID, Social Provider (incase I include Twitter), and UID.
+
+The user selects to login with Facebook ad a few things happen...
+
+1. I check the Authentication table to see if there is an existing record. If so, I find the user in the user table by the UserID value stored in the Authentication table.
+
+2. If there is no match found, I create a new User Record using the values from the Facebook response and also an Authentication record with the new users ID. 
+
+3. When one of those tasks are complete, I then create a session and log the user in.
+
