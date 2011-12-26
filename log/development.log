@@ -1,0 +1,38 @@
+  [1m[36m (0.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (6.5ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("schema_migrations")[0m
+  [1m[35m (3.2ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateUsers (20110811194204)
+  [1m[35m (0.7ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "username" varchar(255), "email" varchar(255), "password_digest" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20110811194204')[0m
+Migrating to CreateAuthentications (20111017213125)
+  [1m[35m (0.6ms)[0m  CREATE TABLE "authentications" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "uid" varchar(255), "provider" varchar(255), "user_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20111017213125')[0m
+Migrating to CreateAlbums (20111225203756)
+  [1m[35m (0.5ms)[0m  CREATE TABLE "albums" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20111225203756')[0m
+Migrating to CreateCollects (20111225215947)
+  [1m[35m (0.8ms)[0m  CREATE TABLE "collects" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "titulo" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20111225215947')[0m
+Migrating to CreatePictures (20111225231704)
+  [1m[35m (0.7ms)[0m  CREATE TABLE "pictures" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20111225231704')[0m
+Migrating to AddPhotoToPicture (20111225232527)
+  [1m[35m (0.7ms)[0m  ALTER TABLE "pictures" ADD "photo_file_name" varchar(255)
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "pictures" ADD "photo_content_type" varchar(255)[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "pictures" ADD "photo_file_size" integer
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20111225232527')[0m
+Migrating to AddPictureToCollect (20111225233221)
+  [1m[35m (0.9ms)[0m  ALTER TABLE "pictures" ADD "collect_id" integer
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20111225233221')[0m
+Migrating to AddCollectToUser (20111225234840)
+  [1m[35m (0.7ms)[0m  ALTER TABLE "collects" ADD "user_id" integer
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20111225234840')[0m
+  [1m[35m (0.2ms)[0m  select sqlite_version(*)
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("albums")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("authentications")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("collects")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("pictures")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("users")
